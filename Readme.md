@@ -19,6 +19,12 @@ This dashboard aims to develop a user-friendly interface that compares various r
 - **Version Control**: GitHub
 - **Hosting**: Streamlit Cloud
 
+## Files Structure:
+- frontend: for the streamlit app (created)
+- backend: for the scraper and regulatory docs (not created yet)
+- chatbot: for the chatbot code (not created yet)
+- scripts: for any additional scripts that may be useful. (not created yet)
+
 ## Getting Started
 
 ### Prerequisites
