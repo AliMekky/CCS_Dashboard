@@ -19,7 +19,7 @@ def load_json(filename):
     with open(filename, 'r', encoding='utf-8') as file:
         return json.load(file)
 
-json_file = "/Users/alimekky/Documents/Internship/10_PARAMS_BY_REGION_LINKS.json"  # Update path if needed
+json_file = "../10_PARAMS_BY_REGION_LINKS.json"
 json_data = load_json(json_file)
 
 # --- ⚡ Initialize Sentence Transformer Model ---
