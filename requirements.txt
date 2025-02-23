@@ -123,3 +123,4 @@ w3lib==2.3.1
 yarl==1.18.3
 zope.interface==7.2
 zstandard==0.23.0
+dotenv
