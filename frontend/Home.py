@@ -62,6 +62,7 @@ st.set_page_config(
 st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
 
 
+
 # Main Page Title
 st.markdown("""
     <h1 style='text-align: center; color: #28a745;'>🌍 CCS Regulatory Compliance System  </h1>
@@ -87,7 +88,7 @@ with col1:
 
 with col2:
     st.success("🤖 **AI Chatbot** – Get instant answers to regulatory queries.")
-    st.success("📈 **Analytics & Insights** – Track CCS policy trends.")
+    st.success("📈 **Compliance Score** – Track CCS policy compliance measures.")
     st.success("📰 **Daily News** – Stay updated with the latest regulatory changes.")
 
 st.markdown("---")
