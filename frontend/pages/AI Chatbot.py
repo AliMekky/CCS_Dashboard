@@ -29,7 +29,7 @@ st.markdown("---")
 
 # Load JSON Data
 try:
-    with open("../10_PARAMS_BY_REGION_LINKS.json", "r") as file:
+    with open("./10_PARAMS_BY_REGION_LINKS.json", "r") as file:
         data = json.load(file)
 except FileNotFoundError:
     st.error("Error: Data file not found. Please check the file path.")
