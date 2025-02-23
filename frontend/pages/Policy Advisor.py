@@ -15,7 +15,7 @@ except Exception as e:
 
 # Streamlit UI
 st.markdown("<h1 style='text-align: center; color: #28a745;'>🔍 Policy Advisor</h1>", unsafe_allow_html=True)
-st.image("../image.png")
+st.image("./image.png")
 
 # st.title("🔍 Compliance Advisor")
 st.write("Select an LLM model to view compliance recommendations.")
