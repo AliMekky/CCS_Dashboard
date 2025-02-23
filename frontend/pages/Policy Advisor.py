@@ -3,7 +3,7 @@ import streamlit as st
 import json
 
 # Load compliance advice from a JSON file
-file_path = "../advice.json"
+file_path = "./advice.json"
 st.sidebar.markdown(f"📅 **Up to date:** {datetime.today().strftime('%B %d, %Y')}")
 
 try:
