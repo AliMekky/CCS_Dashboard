@@ -1,3 +1,4 @@
+import datetime
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -5,6 +6,7 @@ import plotly.graph_objects as go
 
 # Set page config
 st.set_page_config(page_title="CCS Ratings Dashboard", layout="wide")
+st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
 
 # Page Title
 st.title("🌎 CCS Ratings Dashboard")

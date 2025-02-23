@@ -1,8 +1,10 @@
+import datetime
 import streamlit as st
 import json
 from streamlit_card import card
 
 st.set_page_config(page_title="Compare by Country - CCS Dashboard", layout="wide")
+st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
 
 st.title("🌎 Compare Carbon Capture by Country")
 st.write("View country-wise trends in carbon capture and storage.")

@@ -1,3 +1,4 @@
+import datetime
 import streamlit as st
 import json
 import numpy as np
@@ -9,6 +10,7 @@ from sentence_transformers import SentenceTransformer
 
 # --- 🏗️ Page Configuration ---
 st.set_page_config(page_title="Similarity Testing - CCS Dashboard", layout="wide")
+st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
 
 # st.title("🔍 LLM Similarity Testing")
 st.write("Compare your query with **Carbon Capture and Storage (CCS) regulatory issues**.")

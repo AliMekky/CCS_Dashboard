@@ -1,3 +1,4 @@
+import datetime
 import streamlit as st
 import json
 import plotly.express as px
@@ -5,6 +6,7 @@ import geopandas as gpd
 from streamlit_card import card
 
 st.set_page_config(page_title="Compare by Parameter - CCS Dashboard", layout="wide")
+st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
 
 st.title("📊 Compare Carbon Capture by Parameter")
 st.write("Analyze how different regions perform across various parameters.")
