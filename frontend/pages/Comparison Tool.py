@@ -166,7 +166,7 @@ with st.expander("📊 **Available Data**"):
 with open("./10_PARAMS_BY_REGION_LINKS.json", "r") as file:
     data = json.load(file)
 
-cache_file = "responses_cache.json"
+cache_file = "./responses_cache.json"
 if os.path.exists(cache_file):
     with open(cache_file, "r") as file:
         try:
