@@ -8,7 +8,8 @@ from datetime import datetime
 
 # Load API Key
 load_dotenv()
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # Set Page Configuration
 st.set_page_config(
