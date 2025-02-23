@@ -10,7 +10,9 @@ from dotenv import load_dotenv
 from datetime import datetime
 
 load_dotenv()
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
 
 st.set_page_config(page_title="Compare by Parameter Summaries - CCS Dashboard", layout="wide")
 current_date = datetime.today().strftime("%B %d, %Y")  # Format: "Month Day, Year"
