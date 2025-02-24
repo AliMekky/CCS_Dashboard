@@ -133,7 +133,7 @@ with st.expander("📌 **4️⃣ Regulatory Recommendations - Key Takeaways for 
 with st.expander("📊 **Available Data**"):
     
     # Load JSON data
-    with open("./10_PARAMS_BY_REGION_LINKS.json", "r") as file:
+    with open("frontend/pages/10_PARAMS_BY_REGION_LINKS.json", "r") as file:
         data = json.load(file)
 
     # Create a DataFrame for the table
@@ -163,7 +163,7 @@ with st.expander("📊 **Available Data**"):
     ), width=1500)
     st.markdown("</div>", unsafe_allow_html=True)
 
-with open("./10_PARAMS_BY_REGION_LINKS.json", "r") as file:
+with open("frontend/pages/10_PARAMS_BY_REGION_LINKS.json", "r") as file:
     data = json.load(file)
 
 cache_file = "frontend/pages/responses_cache.json"

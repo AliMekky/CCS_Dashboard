@@ -84,12 +84,13 @@ col1, col2 = st.columns(2)
 with col1:
     st.success("📌 **Regulatory Database** – Browse CCS policies worldwide.")
     st.success("📊 **Comparison Tool** – Analyze differences in CCS regulations.")
-    st.success("📑 **Policy Advisor** – Understand key compliance requirements.")
+    st.success("📰 **Daily News** – Stay updated with the latest regulatory changes.")
 
 with col2:
     st.success("🤖 **AI Chatbot** – Get instant answers to regulatory queries.")
     st.success("📈 **Compliance Score** – Track CCS policy compliance measures.")
-    st.success("📰 **Daily News** – Stay updated with the latest regulatory changes.")
+    st.success("📑 **Policy Advisor** – Understand key compliance requirements.")
+
 
 st.markdown("---")
 
