@@ -50,6 +50,7 @@
 # st.markdown("---")
 import datetime
 import streamlit as st
+from streamlit.components.v1 import html
 
 # Page Configuration
 st.set_page_config(
@@ -60,8 +61,6 @@ st.set_page_config(
 )
 
 st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
-
-
 
 # Main Page Title
 st.markdown("""
@@ -77,19 +76,50 @@ st.info("CCS regulations are constantly evolving, making it crucial to stay upda
 
 st.markdown("---")
 
-# 2️⃣ Key Features
+def nav_page(page_name, timeout_secs=3):
+    page_name_url = page_name.replace(' ', '_')
+    nav_script = """
+        <script type="text/javascript">
+            function attempt_nav_page(page_name, start_time, timeout_secs) {
+                var links = window.parent.document.getElementsByTagName("a");
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].href.toLowerCase().endsWith("/" + page_name.toLowerCase())) {
+                        links[i].click();
+                        return;
+                    }
+                }
+                var elapsed = new Date() - start_time;
+                if (elapsed < timeout_secs * 1000) {
+                    setTimeout(attempt_nav_page, 100, page_name, start_time, timeout_secs);
+                } else {
+                    alert("Unable to navigate to page '" + page_name + "' after " + timeout_secs + " second(s).");
+                }
+            }
+            window.addEventListener("load", function() {
+                attempt_nav_page("%s", new Date(), %d);
+            });
+        </script>
+    """ % (page_name_url, timeout_secs)
+    html(nav_script)
+
+# 2️⃣ Key Features Section
 st.markdown("## 🚀 Key Features")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.success("📌 **Regulatory Database** – Browse CCS policies worldwide.")
-    st.success("📊 **Comparison Tool** – Analyze differences in CCS regulations.")
-    st.success("📰 **Daily News** – Stay updated with the latest regulatory changes.")
+    st.button("📌 **Regulatory Database** – Browse CCS policies worldwide.")
+    if st.button("📊 **Comparison Tool** – Analyze differences in CCS regulations."):
+        nav_page("Comparison_Tool")
+    if st.button("📰 **Daily News** – Stay updated with the latest regulatory changes."):
+        nav_page("Daily_News")
 
 with col2:
-    st.success("🤖 **AI Chatbot** – Get instant answers to regulatory queries.")
-    st.success("📈 **Compliance Score** – Track CCS policy compliance measures.")
-    st.success("📑 **Policy Advisor** – Understand key compliance requirements.")
+    if st.button("🤖 **AI Chatbot** – Get instant answers to regulatory queries."):
+        nav_page("AI_Chatbot")
+    if st.button("📈 **Compliance Score** – Track CCS policy compliance measures."):
+        nav_page("Compliance_Score")
+    if st.button("📑 **Policy Advisor** – Understand key compliance requirements."):
+        nav_page("Policy_Advisor")
 
 
 st.markdown("---")
