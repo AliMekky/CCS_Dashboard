@@ -51,6 +51,7 @@
 import datetime
 import streamlit as st
 from streamlit.components.v1 import html
+import base64
 
 # Page Configuration
 st.set_page_config(
@@ -60,12 +61,40 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
+# Get the current date
+current_date = datetime.date.today().strftime('%B %d, %Y')
+
+# Use HTML to simulate adding the date next to the top-right "Deploy" button
+st.markdown(
+    f"""
+    <style>
+        .top-bar-date {{
+            position: absolute;
+            top: 10px; /* Adjust for proper vertical alignment */
+            right: 50px; /* Reduce spacing for smaller screens */
+            font-size: 14px; /* Slightly smaller font for better fit */
+            color: #666; /* Subtle gray color */
+            z-index: 1000; /* Ensure it appears above other elements */
+        }}
+        /* Compatibility for Streamlit's top navigation bar */
+        .css-1v3fvcr {{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }}
+    </style>
+    <div class="top-bar-date">📅 {current_date}</div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Sidebar content
+st.sidebar.markdown(f"📅 **Up to date:** {current_date}")
 
 # Main Page Title
 st.markdown("""
-    <h1 style='text-align: center; color: #28a745;'>🌍 CCS Regulatory Compliance System  </h1>
-    <p style='text-align: center; font-size: 18px; color: #555;'>Your go-to platform for tracking, analyzing, and comparing CCS regulations globally.</p>
+    <h1 style='text-align: center; color: #28a745;'>🌍 Carbon Compass  </h1>
+    <p style='text-align: center; font-size: 18px; color: #555;'>Navigate the world of CCS regulations with ease.</p>
 """, unsafe_allow_html=True)
 
 st.markdown("---")
@@ -106,21 +135,89 @@ def nav_page(page_name, timeout_secs=3):
 st.markdown("## 🚀 Key Features")
 col1, col2 = st.columns(2)
 
+def feature_button(image_path, title, description, page_name=None):
+    """
+    Displays a feature button with a local image, title, description, and optional navigation functionality.
+
+    :param image_path: Path to the local image.
+    :param title: Title of the feature.
+    :param description: Description of the feature.
+    :param page_name: Name of the page to navigate to (optional). If None, no navigation occurs.
+    """
+    # Convert the image to a base64 string
+    with open(image_path, "rb") as image_file:
+        encoded_image = base64.b64encode(image_file.read()).decode()
+
+    # Create the button with navigation if `page_name` is provided
+    onclick_action = f"window.location.href='/{page_name.replace(' ', '_')}'" if page_name else ""
+
+    # Render the button
+    st.markdown(
+        f"""
+        <div onclick="{onclick_action}" 
+             style="cursor: pointer; background-color: #f8f9fa; border: none; text-align: left; 
+                    display: flex; align-items: center; padding: 10px; border-radius: 8px; 
+                    width: 100%; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <img src="data:image/png;base64,{encoded_image}" alt="{title}" 
+                 style="width: 40px; height: 40px; margin-right: 10px;">
+            <div>
+                <span style="font-size: 16px; color: #333;"><b>{title}</b></span><br>
+                <span style="font-size: 14px; color: #666;">{description}</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Add navigation only if page_name is provided
+    if page_name:
+        if st.button(f"Go to {title}"):
+            nav_page(page_name)
+
+
+# Column 1 Buttons
 with col1:
-    st.button("📌 **Regulatory Database** – Browse CCS policies worldwide.")
-    if st.button("📊 **Comparison Tool** – Analyze differences in CCS regulations."):
-        nav_page("Comparison_Tool")
-    if st.button("📰 **Daily News** – Stay updated with the latest regulatory changes."):
-        nav_page("Daily_News")
+    # Regulatory Database button without navigation
+    feature_button(
+        "/Users/nikhil/Desktop/CCS_Dashboard/frontend/images/regulatory_database.jpg",
+        "📌 Regulatory Database",
+        "Browse CCS policies worldwide.",
+        "Regulatory_Database"
+    )
+    # Other buttons with navigation
+    feature_button(
+        "/Users/nikhil/Desktop/CCS_Dashboard/frontend/images/comparison_tool.jpg",
+        "📊 Comparison Tool",
+        "Analyze differences in CCS regulations.",
+        "Comparison_Tool"
+    )
+    feature_button(
+        "/Users/nikhil/Desktop/CCS_Dashboard/frontend/images/daily_news.jpg",
+        "📰 Daily News",
+        "Stay updated with the latest regulatory changes.",
+        "Daily_News"
+    )
 
+# Column 2 Buttons
 with col2:
-    if st.button("🤖 **AI Chatbot** – Get instant answers to regulatory queries."):
-        nav_page("AI_Chatbot")
-    if st.button("📈 **Compliance Score** – Track CCS policy compliance measures."):
-        nav_page("Compliance_Score")
-    if st.button("📑 **Policy Advisor** – Understand key compliance requirements."):
-        nav_page("Policy_Advisor")
-
+    feature_button(
+        "/Users/nikhil/Desktop/CCS_Dashboard/frontend/images/ai_chatbot.jpg",
+        "🤖 AI Chatbot",
+        "Get instant answers to regulatory queries.",
+        "AI_Chatbot"
+    )
+    feature_button(
+        "/Users/nikhil/Desktop/CCS_Dashboard/frontend/images/compliance_score.jpg",
+        "📈 Compliance Score",
+        "Track CCS policy compliance measures.",
+        "Compliance_Score"
+    )
+    feature_button(
+        "/Users/nikhil/Desktop/CCS_Dashboard/frontend/images/policy_advisor.jpg",
+        "📑 Policy Advisor",
+        "Understand key compliance requirements.",
+        "Policy_Advisor"
+    )
 
 st.markdown("---")
 
@@ -149,8 +246,6 @@ Our dashboard provides **clear, data-driven insights** into CCS regulations usin
 4️⃣ **Analyze** trends with our **Analytics & Insights Dashboard**.  
 5️⃣ **Stay Updated** with daily news on CCS & climate regulations.  
 """)
-
-
 
 # Footer
 st.markdown("---")
