@@ -12,7 +12,6 @@ from sentence_transformers import SentenceTransformer
 st.set_page_config(page_title="Similarity Testing - CCS Dashboard", layout="wide")
 st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
 
-# st.title("🔍 LLM Similarity Testing")
 st.write("Compare your query with **Carbon Capture and Storage (CCS) regulatory issues**.")
 
 # --- 📂 Load JSON Data ---
@@ -35,6 +34,7 @@ model = load_model()
 issue_texts = []
 issue_regions = []
 issue_titles = []
+issue_actions = []
 
 for region in json_data:
     region_name = region["region"]
@@ -42,6 +42,7 @@ for region in json_data:
         issue_texts.append(issue["text"])  # Store issue text
         issue_regions.append(region_name)  # Store corresponding region
         issue_titles.append(issue["issue"])  # Store issue title
+        issue_actions.append(issue["summary"])  # Store action points
 
 # --- 🔢 Encode all issues into embeddings ---
 @st.cache_resource
@@ -64,10 +65,10 @@ def search_similar_issues(input_text, top_k=10):
     D, I = index.search(query_embedding, top_k)  # Retrieve Top-K matches
 
     similarity_scores = [
-        (issue_regions[i], issue_titles[i], round(d * 100, 2)) for i, d in zip(I[0], D[0])
+        (issue_regions[i], issue_titles[i], round(d * 100, 2), issue_actions[i]) for i, d in zip(I[0], D[0])
     ]
 
-    return pd.DataFrame(similarity_scores, columns=["Region", "Issue", "Similarity (%)"])
+    return pd.DataFrame(similarity_scores, columns=["Region", "Issue", "Similarity (%)", "Summary"])
 
 
 # --- 🎯 User Input Query ---
@@ -86,7 +87,18 @@ if st.button("Find Similar Issues"):
 
     # 🎯 **Show Similarity Results**
     st.subheader("📊 Similarity Results")
-    st.dataframe(similarity_df, use_container_width=True)
+
+    for index, row in similarity_df.iterrows():
+        col1, col2, col3 = st.columns([2, 2, 1])  # Layout for table rows
+
+        col1.write(row["Region"])
+        col2.write(row["Issue"])
+        col3.write(f"{row['Similarity (%)']}%")
+
+        # "See More" Expander for Action Points (Inline)
+        
+        with st.expander("See More"):
+            st.write(f"📌 **Summary:** {row['Summary']}")
 
     # 📊 **Bar Chart Visualization**
     st.subheader("📈 Similarity Score Distribution")
