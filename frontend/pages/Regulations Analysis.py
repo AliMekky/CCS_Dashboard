@@ -15,7 +15,7 @@ st.write("Compare Carbon Capture and Storage (CCS) regulatory ratings across dif
 
 # Load Ratings Data from JSON file
 try:
-    with open("./pages/ratings.json", "r") as file:
+    with open("frontend/pages/ratings.json", "r") as file:
         ratings_data = json.load(file)
 except (FileNotFoundError, json.JSONDecodeError):
     st.error("Error loading `ratings.json`. Ensure the file exists and is properly formatted.")
