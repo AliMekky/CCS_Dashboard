@@ -1,0 +1,169 @@
+[
+    {
+        "region": "Alberta (Canada)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 5,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 4,
+        "Post-Closure Liability Risk": 4
+        
+      },
+      {
+        "region": "European Union",
+        "Regulatory Complexity": 5,
+        "Storage Potential": 4,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 5
+      },
+      {
+        "region": "British Columbia (Canada)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 4,
+        "Financial Burden": 3,
+        "Monitoring & Compliance Effort": 4,
+        "Post-Closure Liability Risk": 3
+        
+      },
+      {
+        "region": "Indiana (United States)",
+        "Regulatory Complexity": 3,
+        "Storage Potential": 4,
+        "Financial Burden": 3,
+        "Monitoring & Compliance Effort": 3,
+        "Post-Closure Liability Risk": 4
+        
+      },
+      {
+        "region": "Kansas (United States)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 4,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 4
+      },
+      {
+        "region": "Louisiana (United States)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 5,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 5
+      },
+      {
+        "region": "Montana (United States)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 4,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 5 
+      },
+      {
+        "region": "Nebraska (United States)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 4,
+        "Financial Burden": 3,
+        "Monitoring & Compliance Effort": 4,
+        "Post-Closure Liability Risk": 5
+      },
+      {
+        "region": "New Mexico (United States)",
+        "Regulatory Complexity": 3,
+        "Storage Potential": 4,
+        "Financial Burden": 3,
+        "Monitoring & Compliance Effort": 3,
+        "Post-Closure Liability Risk": 3
+      },
+      {
+        "region": "North Dakota (United States)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 5,
+        "Financial Burden": 3,
+        "Monitoring & Compliance Effort": 4,
+        "Post-Closure Liability Risk": 5
+      
+      },
+      {
+        "region": "Northern Ireland (United Kingdom)",
+        "Regulatory Complexity": 5,
+        "Storage Potential": 4,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 5
+        
+      },
+      {
+        "region": "Norway",
+        "Regulatory Complexity": 5,
+        "Storage Potential": 5,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 5
+        
+      },
+      {
+        "region": "South Australia (Australia)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 4,
+        "Financial Burden": 3,
+        "Monitoring & Compliance Effort": 4,
+        "Post-Closure Liability Risk": 4
+        
+      },
+      {
+        "region": "Texas (United States)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 5,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 4,
+        "Post-Closure Liability Risk": 5
+        
+      },
+      {
+        "region": "United Kingdom",
+        "Regulatory Complexity": 5,
+        "Storage Potential": 5,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 5
+        
+      },
+      {
+        "region": "United States",
+        "Regulatory Complexity": 5,
+        "Storage Potential": 5,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 4
+        
+      },
+      {
+        "region": "Victoria (Australia)",
+        "Regulatory Complexity": 5,
+        "Storage Potential": 4,
+        "Financial Burden": 5,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 4
+        
+      },
+      {
+        "region": "Western Australia (Australia)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 4,
+        "Financial Burden": 5,
+        "Monitoring & Compliance Effort": 4,
+        "Post-Closure Liability Risk": 3 
+      },
+      {
+        "region": "Wyoming (United States)",
+        "Regulatory Complexity": 4,
+        "Storage Potential": 5,
+        "Financial Burden": 4,
+        "Monitoring & Compliance Effort": 5,
+        "Post-Closure Liability Risk": 3
+        
+      }
+      
+]
+
+  
