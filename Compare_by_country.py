@@ -10,7 +10,7 @@ st.title("🌎 Compare Carbon Capture by Country")
 st.write("View country-wise trends in carbon capture and storage.")
 
 # Load JSON data
-with open("../10_PARAMS_BY_REGION_LINKS.json", "r") as file:
+with open("frontend/pages/10_PARAMS_BY_REGION_LINKS.json", "r") as file:
     data = json.load(file)
 
 # Unique issues extraction

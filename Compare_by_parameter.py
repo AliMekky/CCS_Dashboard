@@ -12,7 +12,7 @@ st.title("📊 Compare Carbon Capture by Parameter")
 st.write("Analyze how different regions perform across various parameters.")
 
 # Load JSON data
-with open("../10_PARAMS_BY_REGION_LINKS.json", "r") as file:
+with open("frontend/pages/10_PARAMS_BY_REGION_LINKS.json", "r") as file:
     data = json.load(file)
 
 # Unique issues extraction
