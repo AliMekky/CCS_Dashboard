@@ -1,12 +1,13 @@
 import streamlit as st
+from streamlit_extras.switch_page_button import switch_page
 
-# Define carousel items
+# Define carousel items (feature pages)
 features = [
-    {"title": "AI Chatbot", "description": "Get instant answers to regulatory queries.", "img": "https://business.cornell.edu/wp-content/uploads/sites/2/2024/07/Robot-working-on-computer-600x400.jpg"},
-    {"title": "Comparison Tool", "description": "Analyze differences in CCS regulations.", "img": "https://static.vecteezy.com/system/resources/thumbnails/004/581/113/small_2x/pros-and-cons-comparison-for-making-business-decisions-advantage-positive-and-negative-analysis-information-list-concept-thoughtful-businessman-listing-business-pros-and-cons-to-consider-benefits-vector.jpg"},
-    {"title": "Compliance Score", "description": "Track CCS policy compliance measures.", "img": "https://igadvisory.co.za/wp-content/uploads/2022/12/depositphotos_132367240-stock-photo-compliance-concept-the-meeting-at.webp"},
-    {"title": "Policy Advisor", "description": "Understand key compliance requirements.", "img": "https://media.istockphoto.com/id/671968496/photo/help-support-advice-guidance-singpost.jpg?s=612x612&w=0&k=20&c=DB2CoqyohiuxYxqjZ8-GD2OYogch8nw2DfDnadl5jEM="},
-    {"title": "Daily News", "description": "Stay updated with the latest regulatory changes.", "img": "https://static.vecteezy.com/system/resources/thumbnails/011/585/604/small_2x/business-newspaper-on-wooden-desk-with-glasses-and-coffee-cup-daily-newspaper-mock-up-concept-photo.jpg"},
+    {"title": "AI_Chatbot", "display_title": "AI Chatbot", "description": "Get instant answers to regulatory queries.", "img": "https://business.cornell.edu/wp-content/uploads/sites/2/2024/07/Robot-working-on-computer-600x400.jpg"},
+    {"title": "Comparison_Tool", "display_title": "Comparison Tool", "description": "Analyze differences in CCS regulations.", "img": "https://static.vecteezy.com/system/resources/thumbnails/004/581/113/small_2x/pros-and-cons-comparison-for-making-business-decisions-advantage-positive-and-negative-analysis-information-list-concept-thoughtful-businessman-listing-business-pros-and-cons-to-consider-benefits-vector.jpg"},
+    {"title": "Compliance_Score", "display_title": "Compliance Score", "description": "Track CCS policy compliance measures.", "img": "https://igadvisory.co.za/wp-content/uploads/2022/12/depositphotos_132367240-stock-photo-compliance-concept-the-meeting-at.webp"},
+    {"title": "Policy_Advisor", "display_title": "Policy Advisor", "description": "Understand key compliance requirements.", "img": "https://media.istockphoto.com/id/671968496/photo/help-support-advice-guidance-singpost.jpg?s=612x612&w=0&k=20&c=DB2CoqyohiuxYxqjZ8-GD2OYogch8nw2DfDnadl5jEM="},
+    {"title": "Daily_News", "display_title": "Daily News", "description": "Stay updated with the latest regulatory changes.", "img": "https://static.vecteezy.com/system/resources/thumbnails/011/585/604/small_2x/business-newspaper-on-wooden-desk-with-glasses-and-coffee-cup-daily-newspaper-mock-up-concept-photo.jpg"},
 ]
 
 # Main Page Title
@@ -15,7 +16,6 @@ st.markdown("""
     <p style='text-align: center; font-size: 18px; color: #555;'>Your go-to platform for tracking, analyzing, and comparing CCS regulations globally.</p>
 """, unsafe_allow_html=True)
 
-# Why This Tool?
 st.markdown("## 🎯 Why This Tool?")
 st.info("CCS regulations are constantly evolving, making it crucial to stay updated. However, navigating complex regulatory frameworks daily can be overwhelming. That's why we built this tool—providing you with **comparative analysis across multiple parameters and regions** while also offering **insights and guidance** to support your next CCS project.")
 
@@ -44,19 +44,10 @@ elif next_clicked:
 current_index = st.session_state["carousel_index"]
 feature = features[current_index]
 
-# Generate a page-friendly title (replace spaces with underscores for page names)
-page_name = feature["title"].replace(" ", "_")
-
-# Display clickable title above the image
+# Display clickable title (uses switch_page to navigate)
 with col2:
-    st.markdown(
-        f"""
-        <h2 style='text-align: center; color: black; margin-top: -18px'>
-            <a href='/{page_name}' target='_self' style='text-decoration: none; color: black;'>{feature['title']}</a>
-        </h2>
-        """,
-        unsafe_allow_html=True
-    )
+    if st.button(feature["display_title"], key=f"title_{current_index}", use_container_width=True):
+        switch_page(feature["title"])  # Instantly navigate without reload
 
 # Display the image
 st.image(feature["img"], use_container_width=True)
