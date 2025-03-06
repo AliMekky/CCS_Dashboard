@@ -1,126 +1,68 @@
-# import streamlit as st
-# from streamlit.components.v1 import html
-# import datetime
-
-# # Set page config
-# st.set_page_config(
-#     page_title="CCS Regulatory Compliance Across the Globe", 
-#     layout="wide", 
-#     page_icon="🌍", 
-#     initial_sidebar_state="expanded"
-# )
-
-# # Sidebar - Date and Navigation
-# st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
-# st.sidebar.title("🔍 Explore More")
-# st.sidebar.markdown("📌 **Navigate to:**")
-# st.sidebar.button("📜 About")
-# st.sidebar.button("📊 Dashboard")
-# st.sidebar.button("🤖 AI Chatbot")
-# st.sidebar.button("📰 News & Updates")
-# # Main Page Title
-# st.markdown("""
-#     <h1 style='text-align: center; color: #28a745;'>🌍 CCS Regulatory Compliance System </h1>
-#     <p style='text-align: center; font-size: 18px; color: #555;'>Your go-to platform for tracking, analyzing, and comparing CCS regulations globally.</p>
-# """, unsafe_allow_html=True)
-# # Custom CSS for Background and Styling
-
-# st.markdown("---")
-
-# # Why This Tool?
-# st.markdown("## 🎯 Why This Tool?")
-# st.info("CCS regulations are constantly evolving, making it crucial to stay updated. However, navigating complex regulatory frameworks daily can be overwhelming. That's why we built this tool—providing you with **comparative analysis across multiple parameters and regions** while also offering **insights and guidance** to support your next CCS project.")
-
-# st.markdown("---")
-
-# # Key Features Section
-# st.markdown("## 🚀 Key Features")
-# col1, col2 = st.columns(2)
-
-# with col1:
-#     st.success("📌 **Regulatory Database** – Browse CCS policies worldwide.")
-#     st.success("📊 **Comparison Tool** – Analyze differences in CCS regulations.")
-#     st.success("📑 **Policy Summaries** – Understand key compliance requirements.")
-
-# with col2:
-#     st.success("🤖 **AI Chatbot** – Get instant answers to regulatory queries.")
-#     st.success("📈 **Analytics & Insights** – Track CCS policy trends.")
-#     st.success("📰 **Daily News Scraping** – Stay updated with the latest regulatory changes.")
-
-# st.markdown("---")
-import datetime
 import streamlit as st
 
-# Page Configuration
-st.set_page_config(
-    page_title="About the CCS Regulatory Dashboard",
-    layout="wide",
-    page_icon="🌍",
-    initial_sidebar_state="expanded"
-)
-
-st.sidebar.markdown(f"📅 **Up to date:** {datetime.date.today().strftime('%B %d, %Y')}")
-
-
+# Define carousel items
+features = [
+    {"title": "AI Chatbot", "description": "Get instant answers to regulatory queries.", "img": "https://business.cornell.edu/wp-content/uploads/sites/2/2024/07/Robot-working-on-computer-600x400.jpg"},
+    {"title": "Comparison Tool", "description": "Analyze differences in CCS regulations.", "img": "https://static.vecteezy.com/system/resources/thumbnails/004/581/113/small_2x/pros-and-cons-comparison-for-making-business-decisions-advantage-positive-and-negative-analysis-information-list-concept-thoughtful-businessman-listing-business-pros-and-cons-to-consider-benefits-vector.jpg"},
+    {"title": "Compliance Score", "description": "Track CCS policy compliance measures.", "img": "https://igadvisory.co.za/wp-content/uploads/2022/12/depositphotos_132367240-stock-photo-compliance-concept-the-meeting-at.webp"},
+    {"title": "Policy Advisor", "description": "Understand key compliance requirements.", "img": "https://media.istockphoto.com/id/671968496/photo/help-support-advice-guidance-singpost.jpg?s=612x612&w=0&k=20&c=DB2CoqyohiuxYxqjZ8-GD2OYogch8nw2DfDnadl5jEM="},
+    {"title": "Daily News", "description": "Stay updated with the latest regulatory changes.", "img": "https://static.vecteezy.com/system/resources/thumbnails/011/585/604/small_2x/business-newspaper-on-wooden-desk-with-glasses-and-coffee-cup-daily-newspaper-mock-up-concept-photo.jpg"},
+]
 
 # Main Page Title
 st.markdown("""
-    <h1 style='text-align: center; color: #28a745;'>🌍 CCS Regulatory Compliance System  </h1>
+    <h1 style='text-align: center; color: #28a745;'>🌍 CCS Insights Hub </h1>
     <p style='text-align: center; font-size: 18px; color: #555;'>Your go-to platform for tracking, analyzing, and comparing CCS regulations globally.</p>
 """, unsafe_allow_html=True)
-
-st.markdown("---")
 
 # Why This Tool?
 st.markdown("## 🎯 Why This Tool?")
 st.info("CCS regulations are constantly evolving, making it crucial to stay updated. However, navigating complex regulatory frameworks daily can be overwhelming. That's why we built this tool—providing you with **comparative analysis across multiple parameters and regions** while also offering **insights and guidance** to support your next CCS project.")
 
-st.markdown("---")
+st.markdown("## 📝 Features")
 
-# 2️⃣ Key Features
-st.markdown("## 🚀 Key Features")
-col1, col2 = st.columns(2)
+# Initialize session state for carousel index
+if "carousel_index" not in st.session_state:
+    st.session_state["carousel_index"] = 0
+
+# Navigation buttons should update the index before rendering content
+col1, col2, col3 = st.columns([2, 6, 2])  # Buttons at the edges
 
 with col1:
-    st.success("📌 **Regulatory Database** – Browse CCS policies worldwide.")
-    st.success("📊 **Comparison Tool** – Analyze differences in CCS regulations.")
-    st.success("📰 **Daily News** – Stay updated with the latest regulatory changes.")
+    prev_clicked = st.button("⬅️ Previous", key="prev_button", use_container_width=True)
 
+with col3:
+    next_clicked = st.button("Next ➡️", key="next_button", use_container_width=True)
+
+# Update index before rendering content
+if prev_clicked:
+    st.session_state["carousel_index"] = (st.session_state["carousel_index"] - 1) % len(features)
+elif next_clicked:
+    st.session_state["carousel_index"] = (st.session_state["carousel_index"] + 1) % len(features)
+
+# Get the current slide
+current_index = st.session_state["carousel_index"]
+feature = features[current_index]
+
+# Generate a page-friendly title (replace spaces with underscores for page names)
+page_name = feature["title"].replace(" ", "_")
+
+# Display clickable title above the image
 with col2:
-    st.success("🤖 **AI Chatbot** – Get instant answers to regulatory queries.")
-    st.success("📈 **Compliance Score** – Track CCS policy compliance measures.")
-    st.success("📑 **Policy Advisor** – Understand key compliance requirements.")
+    st.markdown(
+        f"""
+        <h2 style='text-align: center; color: black; margin-top: -18px'>
+            <a href='/{page_name}' target='_self' style='text-decoration: none; color: black;'>{feature['title']}</a>
+        </h2>
+        """,
+        unsafe_allow_html=True
+    )
 
+# Display the image
+st.image(feature["img"], use_container_width=True)
 
-st.markdown("---")
-
-# 3️⃣ Daily News Scraping
-st.markdown("## 📰 Stay Informed with Daily News Updates")
-st.markdown("""
-Our **automated news system** collects and organizes the latest news on:
-- 🌍 **Global CCS regulations and policies**  
-- 🔬 **Scientific advancements in carbon capture**  
-- 💰 **Investments, funding, and market trends**  
-- 🌱 **Sustainability & climate-related policies**  
-
-📢 **Check our News & Updates section** for real-time regulatory developments!
-""")
-
-st.markdown("---")
-
-# 4️⃣ How It Works
-st.markdown("## ⚙️ How It Works")
-st.markdown("""
-Our dashboard provides **clear, data-driven insights** into CCS regulations using the following tools:
-
-1️⃣ **Explore** regional policies in our **Regulatory Database**.  
-2️⃣ **Compare** regulations using our **Comparison Tool**.  
-3️⃣ **Ask** the **AI Chatbot** for instant compliance answers.  
-4️⃣ **Analyze** trends with our **Analytics & Insights Dashboard**.  
-5️⃣ **Stay Updated** with daily news on CCS & climate regulations.  
-""")
-
-
-
-# Footer
-st.markdown("---")
+# Display the description centered
+st.markdown(
+    f"<p style='text-align: center; font-size: 18px; color: black;'>{feature['description']}</p>",
+    unsafe_allow_html=True
+)
