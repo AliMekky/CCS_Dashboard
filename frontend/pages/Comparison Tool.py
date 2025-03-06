@@ -130,7 +130,7 @@ with st.expander("📌 **4️⃣ Regulatory Recommendations - Key Takeaways for 
         
         return df[sorted_countries]
 
-with st.expander("📊 **Available Data**"):
+with st.expander("📊**Regional Compliance coverage**"):
     
     # Load JSON data
     with open("./10_PARAMS_BY_REGION_LINKS.json", "r") as file:

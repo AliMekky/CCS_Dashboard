@@ -25,7 +25,6 @@ selected_model = st.selectbox(
     "Choose the LLM Model:",
     [model["model_name"] for model in model_advice_data] if model_advice_data else []
 )
-
 # Retrieve and display compliance advice for the selected model
 if selected_model:
     advice_text = next(

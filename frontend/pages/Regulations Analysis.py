@@ -28,7 +28,7 @@ if df.empty:
     st.warning("No data available. Please check the `ratings.json` file.")
 else:
     # Sidebar: Select Regions to Compare
-    selected_regions = st.sidebar.multiselect("Select regions to compare:", df["region"].tolist(), default=df["region"].tolist())
+    selected_regions = st.sidebar.multiselect("Select regions to compare:", df["region"].tolist(), default=df["region"].iloc[:2].tolist())
     filtered_df = df[df["region"].isin(selected_regions)]
 
     st.divider()

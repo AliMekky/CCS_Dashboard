@@ -35,14 +35,15 @@ issue_texts = []
 issue_regions = []
 issue_titles = []
 issue_actions = []
-
+issue_links = []
 for region in json_data:
     region_name = region["region"]
     for issue in region["issues"]:
         issue_texts.append(issue["text"])  # Store issue text
         issue_regions.append(region_name)  # Store corresponding region
         issue_titles.append(issue["issue"])  # Store issue title
-        issue_actions.append(issue["summary"])  # Store action points
+        issue_actions.append(issue["summary"])
+        issue_links.append(issue["link"])  # Store action points
 
 # --- 🔢 Encode all issues into embeddings ---
 @st.cache_resource
@@ -65,10 +66,10 @@ def search_similar_issues(input_text, top_k=10):
     D, I = index.search(query_embedding, top_k)  # Retrieve Top-K matches
 
     similarity_scores = [
-        (issue_regions[i], issue_titles[i], round(d * 100, 2), issue_actions[i]) for i, d in zip(I[0], D[0])
+        (issue_regions[i], issue_titles[i], round(d * 100, 2), issue_actions[i], issue_links[i]) for i, d in zip(I[0], D[0])
     ]
 
-    return pd.DataFrame(similarity_scores, columns=["Region", "Issue", "Similarity (%)", "Summary"])
+    return pd.DataFrame(similarity_scores, columns=["Region", "Issue", "Similarity (%)", "Summary", "Link"])
 
 
 # --- 🎯 User Input Query ---
@@ -85,6 +86,14 @@ if st.button("Find Similar Issues"):
     with st.spinner("Searching..."):
         similarity_df = search_similar_issues(user_query, top_k)
 
+    
+    # 📊 **Bar Chart Visualization**
+    st.subheader("📈 Similarity Score Distribution")
+    fig = px.bar(similarity_df, x="Similarity (%)", y="Issue", color="Region", 
+                 orientation="h", text="Similarity (%)", 
+                 color_discrete_sequence=px.colors.qualitative.Set1)
+    fig.update_layout(yaxis_title="Issue", xaxis_title="Similarity (%)", margin={"l": 0, "r": 0, "t": 10, "b": 10})
+    st.plotly_chart(fig, use_container_width=True)
     # 🎯 **Show Similarity Results**
     st.subheader("📊 Similarity Results")
 
@@ -99,11 +108,4 @@ if st.button("Find Similar Issues"):
         
         with st.expander("See More"):
             st.write(f"📌 **Summary:** {row['Summary']}")
-
-    # 📊 **Bar Chart Visualization**
-    st.subheader("📈 Similarity Score Distribution")
-    fig = px.bar(similarity_df, x="Similarity (%)", y="Issue", color="Region", 
-                 orientation="h", text="Similarity (%)", 
-                 color_discrete_sequence=px.colors.qualitative.Set1)
-    fig.update_layout(yaxis_title="Issue", xaxis_title="Similarity (%)", margin={"l": 0, "r": 0, "t": 10, "b": 10})
-    st.plotly_chart(fig, use_container_width=True)
+            st.write(f"[**Link**]({row['Link']})")
