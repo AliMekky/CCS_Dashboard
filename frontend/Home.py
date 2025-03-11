@@ -22,7 +22,7 @@ st.warning(
 
 # Main Page Title
 st.markdown("""
-    <h1 style='text-align: center; color: #28a745;'>🌍 CCS Insights Hub </h1>
+    <h1 style='text-align: center; color: #28a745;'>🌍 Cécilia </h1>
     <p style='text-align: center; font-size: 18px; color: #555;'>Your go-to platform for tracking, analyzing, and comparing CCS regulations globally.</p>
 """, unsafe_allow_html=True)
 
